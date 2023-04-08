@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  {% include 'includes/head.html' %}
+</head>
+
+<body>
+  <main>
+
+    <!-- Hero -->
+    <section class="section-header overflow-hidden pt-7 pt-lg-8 pb-9 pb-lg-12 bg-primary text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <img class="text-muted mb-4" src="{% static 'assets/img/icons/wand_dark.png' %}" alt="Wand to setup">
+            <h1 class="fw-bolder">Web App Dashboard</h1>
+            {% if request.user.is_authenticated %}
+              <h2 class="lead fw-normal text-muted mb-5">Go to dashboard to start setup :)</h2>
+              <div class="d-flex justify-content-center">
+                <a href="{% url 'dashboard' %}" class="btn btn-lg btn-secondary d-inline-flex align-items-center me-4">
+                  <span class="btn-inner--icon"><i class="fas fa-sign-in-alt"></i></span>
+                  <span class="btn-inner--text">Dashboard </span>
+                </a>
+              </div>
+            {% else %}
+              <h2 class="lead fw-normal text-muted mb-5">Login to start setup :)</h2>
+              <div class="d-flex justify-content-center">
+                <a href="{% url 'login' %}" class="btn btn-lg btn-secondary d-inline-flex align-items-center me-4">
+                  <span class="btn-inner--icon"><i class="fas fa-sign-in-alt"></i></span>
+                  <span class="btn-inner--text">Login</span>
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  {% include 'includes/scripts.html' %}
+  <!-- End Scripts -->
+
+</body>
+
+</html>

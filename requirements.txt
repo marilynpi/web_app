@@ -7,3 +7,4 @@ python-dotenv
 django-admin-volt
 django_compressor
 django-libsass
+django-froala-editor

@@ -15,4 +15,5 @@ __pycache__/
 local_settings.py
 media
 
-web_app/staticfiles/
+rest_api/staticfiles/
+**/migrations/

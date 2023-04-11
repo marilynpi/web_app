@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('admin_volt.urls')),
     path('api/blog/', include('blog.urls')),
+    path('api/section/', include('section.urls')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

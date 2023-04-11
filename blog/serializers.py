@@ -1,13 +1,30 @@
 from rest_framework import serializers
+from rest_framework_recursive.fields import RecursiveField
 from . import models
-#from tag.serializers import TagSerializer
-#from categoria.serializers import CategoriaSerializer
+
+
+class CategorySerializer(serializers.ModelSerializer):
+
+    children = RecursiveField(many=True)
+
+    class Meta:
+        fields = ('id', 'url', 'name', 'parent',
+                  'children', 'created_at', 'last_update')
+        model = models.Category
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ('id', 'url', 'name')
+        model = models.Tag
+
 
 class PostSerializer(serializers.ModelSerializer):
-    
-    #categoria = CategoriaSerializer()
-    #tag = TagSerializer(read_only=True, many=True)
-    
+
+    category = CategorySerializer()
+    tags = TagSerializer(read_only=True, many=True)
+
     class Meta:
-        fields = ('id', 'title', 'content', 'author', 'abstract', 'cover_img','created_at', 'published_at', 'is_featured','slug' )
+        fields = ('id',  'url', 'title', 'content', 'author', 'abstract',
+                  'cover_image', 'created_at', 'last_update', 'is_featured', 'category', 'tags')
         model = models.Post

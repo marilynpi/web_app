@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'compressor',       #Django Compressor (Sass)
     'froala_editor',    #Django WYSIWYG Editor
     'blog.apps.BlogConfig',
+    'section.apps.SectionsConfig',
 ]
 
 MIDDLEWARE = [

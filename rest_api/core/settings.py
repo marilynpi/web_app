@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'froala_editor',    #Django WYSIWYG Editor
     'blog.apps.BlogConfig',
     'section.apps.SectionsConfig',
+    'emails.apps.EmailsConfig',
+    'shop.apps.ShopConfig',
 ]
 
 MIDDLEWARE = [
@@ -156,9 +158,19 @@ COMPRESS_PRECOMPILERS = (
 
 # Django Admin Configuration
 LOGIN_REDIRECT_URL = '/admin'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email configuration
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_FROM = EMAIL_HOST_USER
+EMAIL_SUBJECT_PREFIX = '[Contact from Web App] '
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -8,8 +8,6 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
     parent = models.ForeignKey(
         'self', null=True, blank=True, related_name='children', on_delete=models.PROTECT)
-    created_at = models.DateTimeField(auto_now_add=True)
-    last_update = models.DateTimeField(auto_now=True)
     url = models.SlugField(max_length=100, unique=True, editable=False)
 
     def __str__(self):

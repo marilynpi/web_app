@@ -1,10 +1,21 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 
 from . import views
 
+class ShopView(routers.APIRootView):
+    """
+    API for Shop Models
+    """
+    pass 
+class ShopRouter(routers.DefaultRouter):
+    APIRootView = ShopView
+
+router = ShopRouter()
+
+router.register(r'product', views.ProductView, 'product')
+router.register(r'product-category', views.ProductCategoryView, 'product-category')
+
 urlpatterns = [
-    path('product/', views.ProductsList.as_view()),
-    path('product/<int:pk>/', views.ProductDetail.as_view()),
-    path('product-category/', views.ProductCategoriesList.as_view()),
-    path('product-category/<int:pk>/', views.ProductCategoryDetail.as_view()),
+    path('', include(router.urls)),
 ]

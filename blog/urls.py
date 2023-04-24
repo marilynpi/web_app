@@ -1,12 +1,22 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 
 from . import views
 
+class BlogView(routers.APIRootView):
+    """
+    API for Blog Models
+    """
+    pass 
+class BlogRouter(routers.DefaultRouter):
+    APIRootView = BlogView
+
+router = BlogRouter()
+
+router.register(r'post', views.PostView, 'post')
+router.register(r'category', views.CategoryView, 'category')
+router.register(r'tag', views.TagView, 'tag')
+
 urlpatterns = [
-    path('post/', views.PostsList.as_view()),
-    path('post/<int:pk>/', views.PostDetail.as_view()),
-    path('category/', views.CategoriesList.as_view()),
-    path('category/<int:pk>/', views.CategoryDetail.as_view()),
-    path('tag/', views.TagsList.as_view()),
-    path('tag/<int:pk>/', views.TagDetail.as_view()),
+    path('', include(router.urls)),
 ]

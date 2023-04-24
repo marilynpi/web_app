@@ -2,11 +2,13 @@ from django.db import models
 from django.utils.text import slugify
 
 class ProductCategory(models.Model):
-    title = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
+    parent = models.ForeignKey(
+        'self', null=True, blank=True, related_name='children', on_delete=models.PROTECT)
     url = models.SlugField(max_length=100, unique=True, editable=False)
 	
     def __str__(self):
-        return self.titulo
+        return self.name
     
     def save(self, *args, **kwargs):
         self.url = slugify(self.name)
@@ -34,9 +36,9 @@ class Product(models.Model):
         return self.title
     
     def save(self, *args, **kwargs):
-        self.url = slugify(self.name)
+        self.url = slugify(self.title)
         super(Product, self).save(*args, **kwargs)
 
     class Meta:
-        verbose_name = "Product"   
+        verbose_name = "Product"
 

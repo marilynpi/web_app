@@ -1,16 +1,24 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 
 from . import views
 
+class SectionView(routers.APIRootView):
+    """
+    API for Section Models
+    """
+    pass 
+class SectionRouter(routers.DefaultRouter):
+    APIRootView = SectionView
+
+router = SectionRouter()
+
+router.register(r'menu', views.MenuView, 'menu')
+router.register(r'header', views.HeaderView, 'header')
+router.register(r'footer', views.FooterView, 'footer')
+router.register(r'media-gallery', views.MediaGalleryView, 'media-gallery')
+router.register(r'slider', views.SliderView, 'slider')
+
 urlpatterns = [
-    path('menu/', views.MenuList.as_view()),
-    path('menu/<int:pk>/', views.MenuDetail.as_view()),
-    path('header/', views.HeaderList.as_view()),
-    path('header/<int:pk>/', views.HeaderDetail.as_view()),
-    path('footer/', views.FooterList.as_view()),
-    path('footer/<int:pk>/', views.FooterDetail.as_view()),
-    path('media-gallery/', views.MediaGalleryList.as_view()),
-    path('media-gallery/<int:pk>/', views.MediaGalleryDetail.as_view()),
-    path('slider/', views.SliderList.as_view()),
-    path('slider/<int:pk>/', views.SliderList.as_view()),
+    path('', include(router.urls)),
 ]

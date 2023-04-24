@@ -9,7 +9,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         fields = ('id', 'url', 'name', 'parent',
-                  'children', 'created_at', 'last_update')
+                  'children')
         model = models.Category
 
 

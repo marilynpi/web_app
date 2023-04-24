@@ -22,8 +22,8 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('admin_volt.urls')),
-    path('api/blog/', include('blog.urls')),
-    path('api/section/', include('section.urls')),
-    path('api/emails/', include('emails.urls')),
-    path('api/shop/', include('shop.urls')),
+    path('api/v1/blog/', include('blog.urls')),
+    path('api/v1/section/', include('section.urls')),
+    path('api/v1/emails/', include('emails.urls')),
+    path('api/v1/shop/', include('shop.urls')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

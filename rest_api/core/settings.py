@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'corsheaders',      #Django CORS package
     'compressor',       #Django Compressor (Sass)
     'froala_editor',    #Django WYSIWYG Editor
+    'coreapi', 
     'blog.apps.BlogConfig',
     'section.apps.SectionsConfig',
     'emails.apps.EmailsConfig',
@@ -177,3 +178,7 @@ EMAIL_SUBJECT_PREFIX = '[Contact from Web App] '
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CORS_ALLOWED_ORIGINS = []
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+}

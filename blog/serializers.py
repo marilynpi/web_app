@@ -5,7 +5,7 @@ from . import models
 
 class CategorySerializer(serializers.ModelSerializer):
 
-    children = RecursiveField(many=True)
+    children = RecursiveField(many=True, required=False)
 
     class Meta:
         fields = ('id', 'url', 'name', 'parent',
@@ -25,6 +25,6 @@ class PostSerializer(serializers.ModelSerializer):
     tags = TagSerializer(read_only=True, many=True)
 
     class Meta:
-        fields = ('id',  'url', 'title', 'content', 'author', 'abstract',
+        fields = ('id',  'url', 'title', 'content', 'author', 'extract',
                   'cover_image', 'created_at', 'last_update', 'is_featured', 'category', 'tags')
         model = models.Post

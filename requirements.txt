@@ -9,3 +9,4 @@ django_compressor
 django-libsass
 django-froala-editor
 djangorestframework-recursive
+coreapi

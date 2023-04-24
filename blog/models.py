@@ -45,7 +45,7 @@ class Post(models.Model):
     content = FroalaField()
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    abstract = FroalaField(max_length=200)
+    extract = FroalaField(max_length=200)
     cover_image = models.ImageField(null=True, blank=True)
     category = models.ForeignKey(
         Category, null=True, blank=True, on_delete=models.PROTECT)

@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 from django.urls import include, path
+from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +27,5 @@ urlpatterns = [
     path('api/v1/section/', include('section.urls')),
     path('api/v1/emails/', include('emails.urls')),
     path('api/v1/shop/', include('shop.urls')),
+    path('api/v1/docs', include_docs_urls(title='REST API Documentation')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
